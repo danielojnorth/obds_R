@@ -1,0 +1,107 @@
+---
+title: "D2_Exercise3"
+author: "Dan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load the airquality data set.
+
+```{r}
+data("airquality")
+```
+
+Open the help page for this data set.
+
+```{r}
+help("airquality")
+```
+
+Examine the data set.
+
+```{r}
+airquality
+```
+
+Display the column names of the airquality data frame.
+
+```{r}
+str(airquality)
+```
+Sort the data frame by increasing value in the Ozone column.
+I will do this by indexing the airquality by row, and defining that index using the order function. I'll then print the new df as a sanity check
+```{r}
+sort_ozone_aq <- airquality[order(airquality$Ozone),]
+sort_ozone_aq
+```
+
+Sort the data frame by Month in increasing order and Temp in decreasing order. 
+
+First defining an index to use for sorting. Decreasing can be given a logical vector rather than a single argument. Then using that index to sort the df.
+```{r}
+sort_index_monthtemp <- order(airquality$Month, airquality$Temp, decreasing = c(FALSE, TRUE)) 
+
+sorted_aq <- airquality[sort_index_monthtemp,]
+sorted_aq
+
+```
+
+Write the latest sorted data frame to a text file format of your choice.
+
+```{r}
+write.table(sorted_aq, file = "sorted_airquality.tsv", sep = "\t")
+```
+
+Run code supplied in powerpoint (should make two dataframes):
+
+```{r}
+buildings <- data.frame(
+  site = c(1, 2, 3), 
+  name = c("b1","b2","b3"))
+
+survey_data <- data.frame(
+survey = c("A","A","A","B","B","B"),
+location = c(1, 2, 3, 2, 3, 1),
+efficiency = c(51, 64, 70, 71, 80, 58))
+```
+
+What is the shared information in these two data frames? 
+
+Location information 
+
+Use the merge() function to combine the two data frames by the shared information into a new data frame
+called buildings_survey.
+
+```{r}
+merged <- merge(x = buildings, y = survey_data, by.x = "site", by.y = "location")
+```
+
+Compute the mean of each numeric column each month in the airquality data frame using aggregate().
+Make sure NA values are removed.
+
+```{r}
+aggregate(x = airquality, 
+          by = list(onth = airquality$Month),
+          FUN = mean, 
+          na.rm = TRUE)
+```
+
+
+Compute the mean of the Solar.R column each month. (also have done this for temp)
+Make sure the grouping column is called Month in the return value.
+Make sure NA values are removed.
+
+```{r}
+aggregate(
+	x = airquality[, c("Solar.R", "Temp")],
+	by = list(Month = airquality$Month),
+	FUN = mean,
+	na.rm = TRUE
+)
+```
+
+

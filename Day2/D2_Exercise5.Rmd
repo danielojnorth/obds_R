@@ -1,0 +1,46 @@
+---
+title: "D2_Exercise5"
+author: "Dan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Part 1
+Create a vector of integers from 1 to 10.
+
+```{r}
+v <- 1:10
+```
+
+
+Compute the log2 of each value in the vector using either lapply() or sapply().
+
+```{r}
+sapply(X = v, FUN = log2)
+lapply(X = v, FUN = log2)
+```
+
+Part 2
+Create a list of four elements, each element being a vector of type either numeric or logical.
+
+```{r}
+l <- list(1:10, c(TRUE, FALSE, TRUE, TRUE), c(2, 44, 18, 12), c(FALSE, TRUE))
+```
+
+
+Compute the sum of each vector in the list using either lapply() or sapply().
+
+```{r}
+sapply(X=l, FUN = sum)
+```
+
+Use sapply() on the list that you created in part 2, to repeat each element of each vector three times. Each is an argument acting on rep.
+
+```{r}
+sapply(X = l, FUN = rep, each = 3)
+```
+

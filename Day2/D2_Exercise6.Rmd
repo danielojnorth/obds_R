@@ -1,0 +1,50 @@
+---
+title: "D2_Exercise6"
+author: "Dan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Write a for loop that iterates over the integers 1 to 7 and prints the number raised to the power of three.
+
+```{r}
+for (i in 1:13) {
+  print(i^3)
+}
+```
+Write a for loop that iterates over the names of the columns in the builtin data set iris and prints each
+column name together with the number of characters in that column name.
+Example output: Sepal.Length: 12
+Hint: use the functions print(), paste0(), and nchar().
+Remember to read the help page of each function to learn more about them.
+
+```{r}
+for (i in 1:5) {
+ print(colnames(iris)[i])
+ print(nchar(colnames(iris)[i]))
+}
+```
+Answer given:
+
+```{r}
+for (column_name in colnames(iris)) {
+  print(
+    paste0(column_name, ":", nchar(column_name)))
+}
+```
+
+
+Use the ifelse() function to print the name of colours that are made up of four characters in the vector
+my_colours below.
+
+```{r}
+my_colours <- c("red","orange","purple","yellow","pink","blue")
+
+ifelse( test = nchar(my_colours) == 4, yes =my_colours, no = "" )
+
+```
+

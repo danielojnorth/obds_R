@@ -1,0 +1,28 @@
+---
+title: "D2_Exercise4.Rmd"
+author: "Dan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Write a function to calculate the hypotenuse of a triangle given the length of the other two sides.
+
+```{r}
+hypotenuse <- function(side_1, side_2) {
+  message("Hi! This is a message")
+  result <- sqrt((side_1*side_1) + (side_2*side_2))
+                 return(result)
+}
+```
+
+Run the function you have created with diﬀerent values.
+
+```{r}
+hypotenuse(side_1=2, side_2=3)
+hypotenuse(side_1=7,side_2=3)
+```
+
